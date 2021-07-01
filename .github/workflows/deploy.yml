@@ -23,7 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.projectinfo.outputs.version }}
-          release_name: Release ${{ github.ref }}
+          release_name: ${{ steps.projectinfo.outputs.name }} - ${{ steps.projectinfo.outputs.version }} Release
           body: |
             Please update the changelog
           draft: false

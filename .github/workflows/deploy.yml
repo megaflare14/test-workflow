@@ -22,7 +22,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-        tag_name: v${{ steps.projectinfo.outputs.version }}
+          tag_name: v${{ steps.projectinfo.outputs.version }}
           release_name: Release ${{ github.ref }}
           body: |
             Please update the changelog

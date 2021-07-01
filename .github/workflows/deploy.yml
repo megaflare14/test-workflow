@@ -1,0 +1,31 @@
+name: Deploy
+
+on:
+  push:
+    branch:
+      - master
+
+jobs:
+  deploy-kovan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: nodejs project information
+        id: projectinfo
+        uses: gregoranders/nodejs-project-info@v0.0.11
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+        tag_name: v${{ steps.projectinfo.outputs.version }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Please update the changelog
+          draft: false
+          prerelease: false
+
